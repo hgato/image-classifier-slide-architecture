@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  tensorflow-hotels:
+    image: tensorflow/tensorflow:2.15.0.post1-gpu-jupyter
+    volumes:
+      - "../notebooks:/tf/notebooks"
+    ports:
+      - "8888:8888"
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            device_ids: ['0']
+            capabilities: [gpu]
